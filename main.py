@@ -22,10 +22,6 @@ my_parser.add_argument('-l',
                        '--locations',
                        action='store',
                        help='set locations file')
-my_parser.add_argument('-d',
-                       '--debug',
-                       action='store_true',
-                       help='run debug mode')
 my_parser.add_argument('-p',
                        '--print',
                        action='store_true',
@@ -38,12 +34,9 @@ my_parser.add_argument("-na",
 # Execute parse_args()
 args = my_parser.parse_args()
 
-
-if args.debug:
-    cleaner = cl.Cleaner()
-
-elif not args.output and not args.locations and os.path.isdir(args.input):
+if not args.output and not args.locations and os.path.isdir(args.input):
     cleaner = cl.Cleaner(args.input)
+    if not os.path.exists('output'): os.mkdir('output')
 
 elif args.output and not args.locations and os.path.isdir(args.input):
     cleaner = cl.Cleaner(args.input, args.output)
@@ -53,6 +46,7 @@ elif args.output and args.locations and os.path.isdir(args.input):
 
 else:
     cleaner = cl.Cleaner()
+    if not os.path.exists('output'): os.mkdir('output')
 
 if args.print:
     cleaner.on_print()
@@ -60,7 +54,7 @@ if args.print:
 if args.notappend:
     cleaner.off_append()
 
-print("Reading files in", os.getcwd() + args.input)
+print("Reading files in", os.getcwd() + '\\' +args.input)
 start = time()
 cleaner.start_clean()
 end = time()
