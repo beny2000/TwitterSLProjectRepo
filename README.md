@@ -1,7 +1,7 @@
 # TwitterSLProjectRepo
 
 ## How to use this repo
- - After downloading and extracting the lastest package
+ - After downloading and extracting the lastest release
  - Run `main.py` in termnial with arguments to start program, `python main.py *arguments*`
  - Program will then write the cleaned data and realted file to an output folder (see below)
  - `main.py` takes 1 required argument which is the input  directory, of the data to clean eg. `$ python main.py *input_folder*`
